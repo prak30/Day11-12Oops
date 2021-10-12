@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class DeckOfCards {
 
@@ -12,12 +13,34 @@ public class DeckOfCards {
 
 	static String deck[][] = { Hearts, Spades, Diamonds, Clubs };
 
-	public static void main(String[] args) {
-		for (int i = 0; i < 13; i++) {
-			for (int j = 0; j < 13; j++) {
-				System.out.println(" " + deck[i][j]);
-			}
-			System.out.println();
-		}
+public static void cardSelection()
+{
+	Random random = new Random();
+	int suit = random.nextInt(4);
+	int rank = random.nextInt(13);
+	if(deck[suit][rank] == null) {
+		cardSelection();
 	}
+	else {
+		System.out.println(deck[suit][rank]);
+	}
+}
+
+public static void cardDistribution()
+{
+	for(int i = 1; i < 5; i++)
+	{
+		System.out.println("player" +i);
+		for(int j = 1; j < 10; j++)
+		{
+			cardSelection();
+		}
+		System.out.println();
+	}
+}
+
+public static void main(String[] args) {
+	System.out.println("welcome players");
+	cardDistribution();
+}
 }
